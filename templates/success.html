@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success!</title>
+    <style>
+        #wrapper{
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .success{
+            border: 1px solid darkgreen;
+            background-color: green;
+            color: white;
+        }
+
+        h1{
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{category}}">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {%endwith%}
+
+        <h1>Email Addresses Entered: </h1>
+        {% for item in emails: %}
+            <h2>{{item['email']}} {{item['created_at']}}</h2><br>
+        {% endfor %}
+    </div>
+</body>
+</html>

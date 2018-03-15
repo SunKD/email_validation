@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+        }
+
+        .error{
+            border: 1px solid black;
+            background-color: red;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="{{category}}">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {%endwith%}
+    <div id="wrapper">
+        <form action='/process' method='POST'>
+            Email Address:
+            <input type="email" name="email" required>
+            <input type="submit" value='Submit'>
+        </form>
+    </div>
+</body>
+</html>
